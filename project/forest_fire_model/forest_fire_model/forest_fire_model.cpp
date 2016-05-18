@@ -56,24 +56,27 @@ void AddNode(int v = 0, int w = 0) {
 		return;
 	}
 	vector<int> wxy;
-	if (x>0) {
-		wxy = sample(wi, x);
-		for (unsigned int i = 0; i<wxy.size(); i++) {
-			G.insert(v, wxy[i]) = 1;
-			visited[wxy[i]] = true;
-		}
-	}
 	if (y>0) {
 		wxy = sample(wi, y);
 		for (unsigned int i = 0; i<wxy.size(); i++) {
 			G.insert(wxy[i], v) = 1;
-			visited[wxy[i]] = true;
+			//visited[wxy[i]] = true;
 		}
 	}
-	for (unsigned int i = 0; i<wi.size(); i++) {
-		if (visited[wi[i]] != true)
-			AddNode(v, wi[i]);
+	if (x>0) {
+		wxy = sample(wi, x);
+		for (unsigned int i = 0; i<wxy.size(); i++) {
+			G.insert(v, wxy[i]) = 1;
+			
+		}
+		for (unsigned int i = 0; i<wxy.size(); i++) {
+			if (visited[wxy[i]] != true)
+				visited[wxy[i]] = true;
+				AddNode(v, wxy[i]);
+		}
 	}
+	
+
 }
 
 void ffm(int size) {
